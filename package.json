@@ -1,0 +1,16 @@
+{
+  "name": "tw-parcel-postcss-err",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.6",
+    "parcel": "^2.14.4",
+    "tailwindcss": "^4.1.6"
+  }
+}

@@ -1,5 +1,9 @@
-## Parcel + Tailwind + PostCSS error repro
+## Parcel + Tailwind + PostCSS error reproduction
 
+1. Run `npm install`
+2. Run `npx parcel src/index.html`
+   
+### Error
 ```shell
 
 @parcel/transformer-postcss: Cannot read properties of undefined (reading 'input')
@@ -17,3 +21,16 @@
       at async Child.handleRequest (.../tw-parcel-postcss-err/node_modules/@parcel/workers/lib/child.js:203:9)
 
 ```
+
+The issue seems to be not checking if value is undefined if the name is source here:
+
+https://github.com/postcss/postcss/blob/main/lib/node.js#L402
+
+If we change:
+
+```diff
+-      } else if (name === 'source') {
++      } else if (name === 'source' && value?.input) {
+```
+
+The problem seems to go away
